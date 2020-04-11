@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RaoHe</title>
+
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+
+  <script src="leaflet-heat.js" crossorigin=""></script>
+
+  <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+
+</head>
+<body>
+
+  <div id="id_map"></div>
+
+  <div id="id_title">
+      <span id="id_txt_title">Pedestrian Analysis of Raohe 饒河商圈 v2.0</span>
+  </div>
+
+  <div id="id_panel">
+
+    <div id="id_panel_row_2" class="cls_panel_row">
+      <span>
+        <span id="id_btn_roadline" class="cls_btn_row_2">Road Line</span>
+        <span id="id_btn_roadarea" class="cls_btn_row_2">Road Area</span>
+        <span id="id_btn_spacesyntax" class="cls_btn_row_2">＋ Space Syntax</span>
+        <span id="id_btn_pois" class="cls_btn_row_2">＋ Stores</span>
+        <span id="id_btn_osmstores" class="cls_btn_row_2">＋ OpenStreetMap Stores</span>
+        <span id="id_btn_researcharea_1" class="cls_btn_row_2">Research Area</span>
+      </span>
+    </div>
+
+    <div id="id_panel_row_3" class="cls_panel_row">
+
+      <span id="id_btn_spacesyntax_options">
+        <!-- options -->
+      </span>
+      <span id="id_btn_pois_options">
+        <!-- options -->
+      </span>
+      <span id="id_btn_osmstores_options">
+        <!-- options -->
+      </span>
+    </div>
+
+    <div id="id_panel_row_4" class="cls_panel_row">
+      <span id="id_btn_pois_options_sub">
+        <!-- options -->
+      </span>
+    </div>
+
+    <div id="id_panel_row_5" class="cls_panel_row">
+      <span id="id_btn_pois_options_sub_2">
+        <!-- options -->
+      </span>
+    </div>
+
+  </div>
+
+  <link rel="stylesheet" type="text/css" href="main.css" />
+
+  <script src='class.js'></script>
+  <script src='define.js'></script>
+  <script src='geojson.js'></script>
+  <script src='map.js'></script>
+  <script src='ui.js'></script>
+
+  <script>
+    
+  </script>
+
+<script>
+
+  $(document).ready(function() {
+
+    main();
+
+  });
+
+  function main() {
+
+    setMapView();
+
+    setBaseMap();
+
+    loadGeoJson(cfRoadLine);
+    loadGeoJson(cfRoadArea);
+
+    for (var i = 0; i < vcfSpaceSyntax.length; i++) {
+
+      loadGeoJson_SpaceSyntax(vcfSpaceSyntax[i]);
+    }
+
+    for (var i = 0; i < vcfPOIs.length; i++) {
+    
+      loadGeoJson_POIs(vcfPOIs[i], i);
+    }
+
+    loadGeoJson_OSMStores(cfOSMStores);
+
+    loadGeoJson(cfResearchArea_1);
+
+    // ------------------------------
+
+    resetUI();
+  }
+
+</script>
+  
+</body>
+</html>
